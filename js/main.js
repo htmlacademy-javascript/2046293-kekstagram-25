@@ -7,10 +7,8 @@ function getRandomInt (min, max) {                 //Информацию взя
 }
 getRandomInt();
 
-function commentsValid (stringTest, maxLenght) {
-  if (stringTest > maxLenght){
-    return false;
-  }
+function commentsValid(string,max){
+  if (string.lenght > max) {return false;}
   return true;
 }
 commentsValid();
