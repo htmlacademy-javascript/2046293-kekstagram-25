@@ -24,8 +24,8 @@ commentsValid('Длинна строки', 5);
 // Задание 2
 
 // Массивы данных для работы
-var users = ['Евгений','Алина','Артём','Кирилл','Анастасия','Эдуард','Роман','Мия','Екатерина','Владислав'];
-var commentsMessage = [
+const users = ['Евгений','Алина','Артём','Кирилл','Анастасия','Эдуард','Роман','Мия','Екатерина','Владислав'];
+const commentsMessage = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -33,7 +33,7 @@ var commentsMessage = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-var descriptionsPhotos = [
+const descriptionsPhotos = [
   'Я с парнем на Море!',
   'Здесь я был, теперь я дома уже.',
   'Красиво, вкусно, дорого!',
@@ -44,36 +44,37 @@ var descriptionsPhotos = [
   'Медитация, йога, восход.',
   'Будь адаптивным как вода (Борис Ли)'
 ];
-var createUsersProfiles = [];
-var createComments = [];
+const createUsersProfiles = [];
+const createComments = [];
+const formatOne = '.jpg';
+const formatTwo = '.svg';
+const wayAvatar = 'img/avatar-';
+const wayPhoto =  'photos/';
 
 
 // Функция создания массива обьектов COMMENTS
-var createComment = function () {
+const createComment = function () {
+  for (let i = 1; i < 15; i++) {
+    createComments[i] = {
 
-  for (var i = 1; i < 15; i++) {
- createComments[i] = {
-
-  id: getRandomInt(1, 87),
-  avatar:'img/avatar-' + getRandomInt(1, 6) + '.svg',
-  message: commentsMessage[getRandomInt(0, 5)],
-  name: users[getRandomInt(0, 9)]
-    }
+      id: getRandomInt(1, 87),
+      avatar: wayAvatar + getRandomInt(1, 6) + formatTwo,
+      message: commentsMessage[getRandomInt(0, 5)],
+      name: users[getRandomInt(0, 9)]
+    };
   }
 };
 // Функция создания объекта пользователя
-var createUserProfile = function () {
- for (var i = 1; i <= 25; i++) {
-
-  createUsersProfiles[i] = {
-
-    id: getRandomInt(1, 25),
-    url: 'photos/' + getRandomInt(1, 25) + '.jpg',
-    description: descriptionsPhotos[getRandomInt(0, 8)],
-    likes: getRandomInt(15, 200),
-    comments: createComments
+const createUserProfile = function () {
+  for (let i = 1; i <= 25; i++) {
+    createUsersProfiles[i] = {
+      id: getRandomInt(1, 25),
+      url: wayPhoto + getRandomInt(1, 25) + formatOne,
+      description: descriptionsPhotos[getRandomInt(0, 8)],
+      likes: getRandomInt(15, 200),
+      comments: createComments
+    };
   }
- }
 };
 //Вызов функций
 createUserProfile();
