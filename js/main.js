@@ -1,1 +1,3 @@
-import './data.js';
+import 'package.json';
+import 'reneder.js';
+
