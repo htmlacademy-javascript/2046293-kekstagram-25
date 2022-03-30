@@ -1,4 +1,4 @@
-import getRandomInt from './util.js';
+import {getRandomInt} from './util.js';
 
 const users = ['Евгений','Алина','Артём','Кирилл','Анастасия','Эдуард','Роман','Мия','Екатерина','Владислав'];
 const commentsMessage = [

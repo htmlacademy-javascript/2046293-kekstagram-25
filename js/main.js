@@ -1,3 +1,1 @@
-import 'package.json';
-import 'reneder.js';
-
+import './render.js';
