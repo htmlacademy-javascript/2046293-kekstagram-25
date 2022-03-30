@@ -5,7 +5,7 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const pictureRendering = createUsersProfiles();
+const pictureRendering = createUsersProfiles(25);
 
 const pictureListFragment = document.createDocumentFragment();
 
