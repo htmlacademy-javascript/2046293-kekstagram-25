@@ -1,4 +1,4 @@
-import getRandomInt from './util.js';
+import {getRandomInt} from './util.js';
 
 const users = ['Евгений','Алина','Артём','Кирилл','Анастасия','Эдуард','Роман','Мия','Екатерина','Владислав'];
 const commentsMessage = [
@@ -20,36 +20,38 @@ const descriptionsPhotos = [
   'Медитация, йога, восход.',
   'Будь адаптивным как вода (Борис Ли)'
 ];
-const createUsersProfiles = [];
-const createComments = [];
-const formatOne = '.jpg';
-const formatTwo = '.svg';
-const wayAvatar = 'img/avatar-';
-const wayPhoto =  'photos/';
 
-// Функция создания массива обьектов COMMENTS
-const createComment = function () {
-  for (let i = 1; i < 15; i++) {
+// Функция генерирует массив с комментариями:
+function generateComments (number) {
+  const formatSvg = '.svg';
+  const imgPath = 'img/avatar-';
+  const createComments = [];
+  for (let i = 1; i <= number; i++) {
     createComments[i] = {
-
       id: getRandomInt(1, 87),
-      avatar: wayAvatar + getRandomInt(1, 6) + formatTwo,
+      avatar: imgPath + getRandomInt(1, 6) + formatSvg,
       message: commentsMessage[getRandomInt(0, 5)],
       name: users[getRandomInt(0, 9)]
     };
   }
-};
-// Функция создания объекта пользователя
-const createUserProfile = function () {
-  for (let i = 1; i <= 25; i++) {
-    createUsersProfiles[i] = {
+
+  return createComments;
+}
+// Функция создает пользовательские профили с комментариями:
+function createUsersProfiles (number) {
+  const formatJpg = '.jpg';
+  const photoPath =  'photos/';
+  const profiles = [];
+  for (let i = 1; i <= number; i++) {
+    profiles[i] = {
       id: getRandomInt(1, 25),
-      url: wayPhoto + getRandomInt(1, 25) + formatOne,
+      url: photoPath + getRandomInt(1, 25) + formatJpg,
       description: descriptionsPhotos[getRandomInt(0, 8)],
       likes: getRandomInt(15, 200),
-      comments: createComments
+      comments: generateComments(15)
     };
   }
-};
-createComment();
-createUserProfile();
+  return profiles;
+}
+
+export {createUsersProfiles};
