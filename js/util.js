@@ -9,8 +9,6 @@ function getRandomInt (min, max) {
 
   return Math.floor(Math.random()* (max - min + 1)) + min;
 }
-export {getRandomInt};
-
 //Функция проверки строки
 function commentsValid(string,max) {
   if (string.lenght > max) {
@@ -19,5 +17,27 @@ function commentsValid(string,max) {
 
   return true;
 }
-export {commentsValid};
 
+//Создаёт элемент LI
+const createComment = function (src, alt, p) {
+
+  const elementLi = document.createElement('li');
+  elementLi.classList.add('social__comment');
+
+  const elementImg = document.createElement('img');
+  elementImg.classList.add('social__picture');
+
+  const elementP = document.createElement('p');
+  elementP.classList.add('social__text');
+  elementLi.appendChild(elementImg);
+  elementLi.appendChild(elementP);
+  elementImg.setAttribute('src', src );
+  elementImg.setAttribute('alt', alt);
+  elementImg.setAttribute('width', 35);
+  elementImg.setAttribute('height', 35);
+  elementP.textContent = p;
+  return elementLi;
+};
+
+
+export {getRandomInt, commentsValid, createComment};
