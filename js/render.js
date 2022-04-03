@@ -14,6 +14,9 @@ pictureRendering.forEach(({url, comments, likes}) => {
   pictureElement.querySelector('.picture__img').src = url;
   pictureElement.querySelector('.picture__comments').textContent = comments.length;
   pictureElement.querySelector('.picture__likes').textContent = likes;
+  pictureElement.classList.add('jsClick');
   pictureListFragment.appendChild(pictureElement);
 });
 pictureListElement.appendChild(pictureListFragment);
+
+export {pictureRendering};

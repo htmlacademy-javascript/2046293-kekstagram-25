@@ -26,7 +26,7 @@ function generateComments (number) {
   const formatSvg = '.svg';
   const imgPath = 'img/avatar-';
   const createComments = [];
-  for (let i = 1; i <= number; i++) {
+  for (let i = 0; i < number; i++) {
     createComments[i] = {
       id: getRandomInt(1, 87),
       avatar: imgPath + getRandomInt(1, 6) + formatSvg,
@@ -42,7 +42,7 @@ function createUsersProfiles (number) {
   const formatJpg = '.jpg';
   const photoPath =  'photos/';
   const profiles = [];
-  for (let i = 1; i <= number; i++) {
+  for (let i = 0; i < number; i++) {
     profiles[i] = {
       id: getRandomInt(1, 25),
       url: photoPath + getRandomInt(1, 25) + formatJpg,
@@ -54,4 +54,4 @@ function createUsersProfiles (number) {
   return profiles;
 }
 
-export {createUsersProfiles};
+export {createUsersProfiles, generateComments};
