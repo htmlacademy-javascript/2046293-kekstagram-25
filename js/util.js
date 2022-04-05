@@ -10,8 +10,8 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random()* (max - min + 1)) + min;
 }
 //Функция проверки строки
-function commentsValid(string,max) {
-  if (string.lenght > max) {
+function commentsValid(value,max) {
+  if (value.lenght > max) {
     return false;
   }
 
@@ -39,5 +39,7 @@ const createComment = function (src, alt, p) {
   return elementLi;
 };
 
+//кнопка ESC
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInt, commentsValid, createComment};
+export {getRandomInt, commentsValid, createComment, isEscapeKey};
