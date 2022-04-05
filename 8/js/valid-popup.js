@@ -74,4 +74,6 @@ const initUploadFormValidation = (onSuccessValidation) => {
   });
 };
 
+initUploadFormValidation();
+
 export {initUploadFormValidation};
