@@ -1,5 +1,5 @@
-// Переменные для работы с POPUP
 const SCALE_VALUE = 100;
+const PROCENT = '%';
 
 const uploadFile = document.querySelector('#upload-file');  //Кнопка загрузки
 const popupWindow = document.querySelector('.img-upload__overlay');  // Форма редактирования ( POPUP )
@@ -13,8 +13,9 @@ const scaleControl = document.querySelector('.scale__control--value'); // Зна
 function openPopup () {
   popupWindow.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  document.querySelector('.effect-level__slider').classList.add('hidden');
   photoPreview.value = uploadFile.value;
-  scaleControl.value = SCALE_VALUE;
+  scaleControl.value = SCALE_VALUE + PROCENT;
   hashtagsText.value = '';
   commentsText.value = '';
   uploadFile.value = '';
