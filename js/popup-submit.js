@@ -1,7 +1,7 @@
 import { uploadPhotoForm} from './form-popup.js';
 import { pristine } from './validation.js';
 import { sendData } from './api.js';
-import { isEscapeKey } from './util.js';
+import { isEscapeKey, urlObject } from './util.js';
 
 const messageSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 const messageSuccess = messageSuccessTemplate.cloneNode(true);
@@ -63,7 +63,7 @@ const setUserFormSubmit = (closeForm) => {
       blockSubmitFormButton();
 
       sendData(
-        'https://25.javascript.pages.academy/kekstagram',
+        urlObject,
         new FormData(evt.target),
         () => {
           unblockSubmitFormButton();

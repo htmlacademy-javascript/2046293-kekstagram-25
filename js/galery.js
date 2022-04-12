@@ -24,14 +24,6 @@ const closePicture = () => {
   document.body.classList.remove('modal-open');
 };
 
-// Закрытие на ESC
-const onUserPhotoEscKeydown = (evt) => {
-  if(isEscapeKey(evt)) {
-    closePicture();
-    document.removeEventListener('keydown', onUserPhotoEscKeydown);
-  }
-};
-
 // Создает комментарий
 const createComment = (item, index) => {
   const newComment = document.createElement('li');
@@ -89,7 +81,7 @@ const renderPhoto = (photoData) => {
 
     comments.forEach(createComment);
 
-    commentsLoader.addEventListener('click', () => {
+    const commentsVisual = () => {
       let hiddenComments = Array.from(bigPicture.querySelectorAll('.social__comment.hidden'));
 
       if (hiddenComments.length <= MIN_NUMBER_COMMENTS) {
@@ -99,13 +91,27 @@ const renderPhoto = (photoData) => {
         hiddenComments = hiddenComments.slice(0, MIN_NUMBER_COMMENTS);
         commentsNumber.textContent = parseInt(commentsNumber.textContent, 10) + MIN_NUMBER_COMMENTS;
       }
-
       hiddenComments.forEach((comment) => {
         comment.classList.remove('hidden');
       });
+    };
+    const onUserEscKey = (evt) => {
+      if(isEscapeKey(evt)) {
+        closePicture();
+        document.removeEventListener('keydown', onUserEscKey);
+        commentsLoader.removeEventListener('click', commentsVisual);
+      }
+    };
+
+    commentsLoader.addEventListener('click', commentsVisual);
+
+    buttonCancel.addEventListener('click', ()=> {
+      bigPicture.classList.add('hidden');
+      document.body.classList.remove('modal-open');
+      commentsLoader.removeEventListener('click', commentsVisual);
     });
 
-    document.addEventListener('keydown', onUserPhotoEscKeydown);
+    document.addEventListener('keydown', onUserEscKey);
   });
 };
 
@@ -114,19 +120,5 @@ const renderPhotoDataList = (similarPhotoData) => {
     renderPhoto(photoData);
   });
 };
-
-// Обработчики
-buttonCancel.addEventListener('click', ()=> {
-  bigPicture.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    bigPicture.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  }
-});
 
 export { usersPhotos, renderPhotoDataList };

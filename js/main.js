@@ -1,3 +1,4 @@
+import { urlObject } from './util.js';
 import { getData } from './api.js';
 import { renderPhotoDataList } from './galery.js';
 import { closePopup } from './form-popup.js';
@@ -7,8 +8,9 @@ import './effect-scale-photo.js';
 import './effect-slider.js';
 import { showFilters, hideFilters, initFilters, filterPhoto, showGetDataMessageError } from './filters.js';
 
+
 getData(
-  'https://25.javascript.pages.academy/kekstagram/data',
+  urlObject,
   (photos) => {
     renderPhotoDataList(photos);
     showFilters();

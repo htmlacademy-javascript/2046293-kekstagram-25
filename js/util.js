@@ -1,4 +1,4 @@
-
+const urlObject = 'https://25.javascript.pages.academy/kekstagram/data';
 // кнопка ESC
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -11,4 +11,4 @@ const debounce = (callback, timeoutDelay) => {
 };
 
 
-export {isEscapeKey, debounce};
+export {isEscapeKey, debounce, urlObject};

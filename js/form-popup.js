@@ -1,5 +1,6 @@
 import { buttonBigger, buttonSmaller } from './effect-scale-photo.js';
 import { isEscapeKey } from './util.js';
+import {sliderBackground} from './effect-slider.js';
 
 const SCALE_VALUE = 100;
 const PROCENT = '%';
@@ -27,6 +28,7 @@ function openPopup () {
   document.querySelector('.effect-level__slider').classList.add('hidden');
   scaleControl.value = SCALE_VALUE + PROCENT;
   effectSlider.classList.remove('visually-hidden');
+  sliderBackground.classList.add('hidden');
 }
 // Функция закрытия POPUP
 function closePopup () {
