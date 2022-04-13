@@ -8,6 +8,7 @@ const inputEffectPhobos = document.querySelector('#effect-phobos');
 const inputEffectHeat = document.querySelector('#effect-heat');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
 const inputScale = document.querySelector('.scale__control--value');
+const sliderBackground = document.querySelector('.img-upload__effect-level');
 
 //Создание слайдера и запись значений
 noUiSlider.create(sliderElement, {
@@ -92,6 +93,7 @@ inputEffectHeat.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.on('update', () => {
       imgUploadPreview.setAttribute('style', `filter: brightness(${valueElement.value}); transform: scale(${inputScale.value})`);
       valueElement.setAttribute('value', sliderElement.noUiSlider.get());
+      sliderBackground.classList.remove('hidden');
     });
   }
 });
@@ -101,6 +103,7 @@ inputEffectPhobos.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.on('update', () => {
       imgUploadPreview.setAttribute('style', `filter: blur(${valueElement.value}px); transform: scale(${inputScale.value})`);
       valueElement.setAttribute('value', sliderElement.noUiSlider.get());
+      sliderBackground.classList.remove('hidden');
     });
   }
 });
@@ -110,6 +113,7 @@ inputEffectMarvin.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.on('update', () => {
       imgUploadPreview.setAttribute('style', `filter: invert(${valueElement.value}%); transform: scale(${inputScale.value})`);
       valueElement.setAttribute('value', sliderElement.noUiSlider.get());
+      sliderBackground.classList.remove('hidden');
     });
   }
 });
@@ -119,6 +123,7 @@ inputEffectSepia.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.on('update', () => {
       imgUploadPreview.setAttribute('style', `filter: sepia(${valueElement.value}); transform: scale(${inputScale.value})`);
       valueElement.setAttribute('value', sliderElement.noUiSlider.get());
+      sliderBackground.classList.remove('hidden');
     });
   }
 });
@@ -128,6 +133,7 @@ inputEffectChrome.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.on('update', () => {
       imgUploadPreview.setAttribute('style', `filter: grayscale(${valueElement.value}); transform: scale(${inputScale.value})`);
       valueElement.setAttribute('value', sliderElement.noUiSlider.get());
+      sliderBackground.classList.remove('hidden');
     });
   }
 });
@@ -136,6 +142,7 @@ inputEffectNone.addEventListener('change', (evt) => {
     imgUploadPreview.setAttribute('style', `transform: scale(${inputScale.value})`);
     sliderElement.setAttribute('disabled', true);
     sliderElement.classList.add('hidden');
+    sliderBackground.classList.add('hidden');
   }
 });
-export {inputScale, imgUploadPreview};
+export {inputScale, imgUploadPreview, sliderBackground};
