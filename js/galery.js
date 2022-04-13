@@ -81,7 +81,7 @@ const renderPhoto = (photoData) => {
 
     comments.forEach(createComment);
 
-    const commentsVisual = () => {
+    const onCommentsVisual = () => {
       let hiddenComments = Array.from(bigPicture.querySelectorAll('.social__comment.hidden'));
 
       if (hiddenComments.length <= MIN_NUMBER_COMMENTS) {
@@ -99,16 +99,16 @@ const renderPhoto = (photoData) => {
       if(isEscapeKey(evt)) {
         closePicture();
         document.removeEventListener('keydown', onUserEscKey);
-        commentsLoader.removeEventListener('click', commentsVisual);
+        commentsLoader.removeEventListener('click', onCommentsVisual);
       }
     };
 
-    commentsLoader.addEventListener('click', commentsVisual);
+    commentsLoader.addEventListener('click', onCommentsVisual);
 
     buttonCancel.addEventListener('click', ()=> {
       bigPicture.classList.add('hidden');
       document.body.classList.remove('modal-open');
-      commentsLoader.removeEventListener('click', commentsVisual);
+      commentsLoader.removeEventListener('click', onCommentsVisual);
     });
 
     document.addEventListener('keydown', onUserEscKey);

@@ -1,7 +1,8 @@
 import { uploadPhotoForm} from './form-popup.js';
 import { pristine } from './validation.js';
 import { sendData } from './api.js';
-import { isEscapeKey, urlObject } from './util.js';
+import { isEscapeKey, urlPost } from './util.js';
+
 
 const messageSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 const messageSuccess = messageSuccessTemplate.cloneNode(true);
@@ -63,7 +64,7 @@ const setUserFormSubmit = (closeForm) => {
       blockSubmitFormButton();
 
       sendData(
-        urlObject,
+        urlPost,
         new FormData(evt.target),
         () => {
           unblockSubmitFormButton();
