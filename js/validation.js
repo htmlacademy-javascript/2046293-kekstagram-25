@@ -25,11 +25,12 @@ const normalizeHashtags = (value) => {
   return hashtags.filter((element) => element !== '');
 };
 
-const handlerLength = (value) => validateMaxLength(normalizeHashtags(value), MAX_LENGTH_HASHTAGS);
+const checkHandlerLength = (value) => validateMaxLength(normalizeHashtags(value), MAX_LENGTH_HASHTAGS);
 
-const handlerSameElements = (value) => isNotSameElements(normalizeHashtags(value));
+const checkHandlerSameElements = (value) => isNotSameElements(normalizeHashtags(value));
 
-const handlerHashtag = (value) => {
+const checkHandlerHashtag = (value) => {
+
   if (value === '') {
     return true;
   } else {
@@ -39,19 +40,19 @@ const handlerHashtag = (value) => {
 
 pristine.addValidator(
   inputHashtags,
-  handlerLength,
+  checkHandlerLength,
   `Максимальное количесвто хэштегов: ${MAX_LENGTH_HASHTAGS}`
 );
 
 pristine.addValidator(
   inputHashtags,
-  handlerSameElements,
+  checkHandlerSameElements,
   'Один и тот же хэш-тег не может быть использован дважды'
 );
 
 pristine.addValidator(
   inputHashtags,
-  handlerHashtag,
+  checkHandlerHashtag,
   'хэш-тег начинается с символа # и может состоять только из букв и чисел, максимальная длина одного хэш-тега 20 символов, включая решётку'
 );
 

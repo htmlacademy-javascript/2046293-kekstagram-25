@@ -3,40 +3,41 @@ import {inputScale, imgUploadPreview } from './effect-slider.js';
 const buttonBigger = document.querySelector('.scale__control--bigger');
 const buttonSmaller = document.querySelector('.scale__control--smaller');
 
-const setScalePhoto = () => {
-  const step = 25;
-  const maxSize = 100;
-  const coefficientCorrectStyleValue = 0.01;
-  inputScale.value = '100%';
-  let valueSize = parseInt(inputScale.value.match(/\d+/), 10);
-  const setShowScale = () => {
-    inputScale.value = `${valueSize}%`;
-    imgUploadPreview.style.transform = `scale(${valueSize * coefficientCorrectStyleValue
-    })`;
-  };
+const STEP_SCALE = 25;
+const MIN_SCALE = 25;
+const MAX_SCALE = 100;
 
-  const onButtonSmallerSizeClick = () => {
-    if (valueSize === step) {
-      setShowScale();
-    } else {
-      valueSize = valueSize - step;
-      setShowScale();
-      return valueSize;
-    }
-  };
-  buttonSmaller.addEventListener('click', onButtonSmallerSizeClick);
-  const onButtonBiggerSizeClick = () => {
-    if (valueSize === maxSize) {
-      setShowScale();
-    } else {
-      valueSize = valueSize + step;
-      setShowScale();
-    }
-  };
-  buttonBigger.addEventListener('click', () => {
-    onButtonBiggerSizeClick();
-  });
+const changeScale = (number) => {
+  imgUploadPreview.style.transform = `scale(${number/MAX_SCALE})`;
 };
-setScalePhoto();
 
-export {buttonBigger, buttonSmaller };
+buttonBigger.disabled = true;
+
+buttonBigger.addEventListener('click', () => {
+  let numberScaleValue = parseInt(inputScale.value.match(/\d+/), 10);
+  numberScaleValue += STEP_SCALE;
+  inputScale.value =  `${numberScaleValue}%`;
+
+  if (numberScaleValue === MAX_SCALE) {
+    buttonBigger.disabled = true;
+  }
+  buttonSmaller.disabled = false;
+
+  changeScale(numberScaleValue);
+});
+
+buttonSmaller.addEventListener('click', () => {
+  let numberScaleValue = parseInt(inputScale.value.match(/\d+/), 10);
+  numberScaleValue -= STEP_SCALE;
+  inputScale.value =  `${numberScaleValue}%`;
+
+  buttonBigger.disabled = false;
+  if (numberScaleValue === MIN_SCALE) {
+    buttonSmaller.disabled = true;
+  }
+
+  changeScale(numberScaleValue);
+});
+
+export {buttonBigger, buttonSmaller};
+
